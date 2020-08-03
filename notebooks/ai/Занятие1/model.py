@@ -1,5 +1,5 @@
 from tensorflow.keras.datasets import mnist #Библиотека с базой Mnist
-from tensorflow.keras.models import Sequential # Подлючаем класс создания модели Sequential
+from tensorflow.keras.models import Sequential, model_from_json # Подлючаем класс создания модели Sequential
 from tensorflow.keras.layers import Dense # Подключаем класс Dense - полносвязный слой
 from tensorflow.keras.optimizers import Adam # Подключаем оптимизатор Adam
 from tensorflow.keras import utils #Утилиты для to_categorical
@@ -31,7 +31,12 @@ model.add(Dense(10, activation="softmax")) # Добавляем полносвя
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"]) # Компилируем модель
 print(model.summary()) #Вывод структуры модели
 
-model.fit(x_train, y_train, batch_size=256, epochs=15, verbose=1)
+model.fit(x_train, y_train, batch_size=256, epochs=15, verbose=1) # обучаем модель
+
+with open('model.json', 'w') as f: # выгружаем модель в файл
+    f.write(model.to_json())
+
+model.save_weights("model.h5") # выгружаем веса модели в файл
 
 #print(model.predict(x_train[1015].reshape(1,784))) #Проверка натренированной модели на одном образце из тренировочного набора
 #print(y_train[1015])
