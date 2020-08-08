@@ -1,4 +1,4 @@
-# Stand
+# Test bench
 
 ## OS
 ```bash
