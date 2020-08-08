@@ -1,7 +1,5 @@
 # Stand
 
-[TOC]
-
 ## OS
 ```bash
 # lsb_release -a
